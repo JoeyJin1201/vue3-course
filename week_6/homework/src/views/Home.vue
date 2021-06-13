@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <!-- <h1>你現在在前台頁面</h1> -->
+    <h1>你現在在前台頁面</h1>
     <div id="nav">
       <router-link to="/">首頁</router-link> |
       <!-- <router-link to="/login">登入</router-link> | -->
