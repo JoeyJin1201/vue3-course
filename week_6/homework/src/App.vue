@@ -3,7 +3,7 @@
 </template>
 
 <style lang="scss">
-@import '~bootstrap/scss/bootstrap';
+@import "~bootstrap/scss/bootstrap";
 
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -15,11 +15,9 @@
 
 #nav {
   padding: 30px;
-
   a {
     font-weight: bold;
     color: #2c3e50;
-
     &.router-link-exact-active {
       color: #42b983;
     }
