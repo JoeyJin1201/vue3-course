@@ -17,7 +17,7 @@ createApp({
           const { token, expired } = res.data;
           // 寫入 cookie token
           // expires 設置有效時間
-          document.cookie = `token=${token};expires=${new Date(expired)}; path=/`;
+          document.cookie = `token=${token};expires=${new Date(expired)};`;
           window.location = 'products.html';
         } else {
           alert(res.data.message);
