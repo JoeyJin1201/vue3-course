@@ -46,26 +46,30 @@ Vue.createApp({
   methods: {
     getProducts() {
       const url = `${apiUrl}/api/${apiPath}/products`;
-      axios.get(url).then((response) => {
-        if (response.data.success) {
-          console.log(response.data.products);
-          this.products = response.data.products;
+      axios.get(url).then((res) => {
+        if (res.data.success) {
+          console.log(res.data.products);
+          this.products = res.data.products;
         } else {
-          alert(response.data.message);
+          alert(res.data.message);
         }
+      }).catch((err) => {
+        console.log(err);
       });
     },
     getProduct(id) {
       const url = `${apiUrl}/api/${apiPath}/product/${id}`;
       this.loadingStatus.loadingItem = id;
-      axios.get(url).then((response) => {
-        if (response.data.success) {
+      axios.get(url).then((res) => {
+        if (res.data.success) {
           this.loadingStatus.loadingItem = '';
-          this.product = response.data.product;
+          this.product = res.data.product;
           this.$refs.userProductModal.openModal();
         } else {
-          alert(response.data.message);
+          alert(res.data.message);
         }
+      }).catch((err) => {
+        console.log(err);
       });
     },
     addToCart(id, qty = 1) {
@@ -77,61 +81,71 @@ Vue.createApp({
       };
 
       this.$refs.userProductModal.hideModal();
-      axios.post(url, { data: cart }).then((response) => {
-        if (response.data.success) {
-          alert(response.data.message);
+      axios.post(url, { data: cart }).then((res) => {
+        if (res.data.success) {
+          alert(res.data.message);
           this.loadingStatus.loadingItem = '';
           this.getCart();
         } else {
-          alert(response.data.message);
+          alert(res.data.message);
         }
+      }).catch((err) => {
+        console.log(err);
       });
     },
     deleteAllCarts() {
       const url = `${apiUrl}/api/${apiPath}/carts`;
-      axios.delete(url).then((response) => {
-        if (response.data.success) {
-          alert(response.data.message);
+      axios.delete(url).then((res) => {
+        if (res.data.success) {
+          alert(res.data.message);
           this.getCart();
         } else {
-          alert(response.data.message);
+          alert(res.data.message);
         }
+      }).catch((err) => {
+        console.log(err);
       });
     },
     getCart() {
       const url = `${apiUrl}/api/${apiPath}/cart`;
-      axios.get(url).then((response) => {
-        if (response.data.success) {
-          this.cart = response.data.data;
+      axios.get(url).then((res) => {
+        if (res.data.success) {
+          this.cart = res.data.data;
         } else {
-          alert(response.data.message);
+          alert(res.data.message);
         }
+      }).catch((err) => {
+        console.log(err);
       });
     },
     removeCartItem(id) {
       const url = `${apiUrl}/api/${apiPath}/cart/${id}`;
       this.loadingStatus.loadingItem = id;
-      axios.delete(url).then((response) => {
-        if (response.data.success) {
-          alert(response.data.message);
+      axios.delete(url).then((res) => {
+        if (res.data.success) {
+          alert(res.data.message);
           this.loadingStatus.loadingItem = '';
           this.getCart();
         } else {
-          alert(response.data.message);
+          alert(res.data.message);
         }
+      }).catch((err) => {
+        console.log(err);
       });
     },
     createOrder() {
       const url = `${apiUrl}/api/${apiPath}/order`;
       const order = this.form;
-      axios.post(url, { data: order }).then((response) => {
-        if (response.data.success) {
-          alert(response.data.message);
+      axios.post(url, { data: order }).then((res) => {
+        if (res.data.success) {
+          alert(res.data.message);
           this.$refs.form.resetForm();
           this.getCart();
         } else {
-          alert(response.data.message);
+          alert(res.data.message);
         }
+      }).catch((err) => {
+        console.log(err);
       });
     },
   },
